@@ -21,6 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yb=a&-^iokc)i&4c3&j-2)d3pgv0!pvjp_kx2$kx0wx2on9jeh'
+AUTH_USER_MODEL = 'member.User'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'member',
     'product',
 ]
 
