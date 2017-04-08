@@ -3,19 +3,30 @@ from django.db import models
 
 class Category(models.Model):
     title = models.CharField(max_length=64)
-    parent = models.ForeignKey('self', null=True)
+    parent = models.ForeignKey('self', blank=True, null=True)
     priority = models.IntegerField(default=0)
 
     def __str__(self):
-        return '{:03} | {}'.format(
+        return '{:03} | {}{}'.format(
             self.priority,
+            self.parent_title,
             self.title
         )
+
+    @property
+    def parent_title(self):
+        title = ''
+        cur_category = self
+        while cur_category.parent:
+            title = cur_category.parent.title + ' > ' + title
+            cur_category = cur_category.parent
+        return title
 
     class Meta:
         index_together = (
             'parent', 'priority'
         )
+        ordering = ('priority', )
 
 
 class Product(models.Model):
