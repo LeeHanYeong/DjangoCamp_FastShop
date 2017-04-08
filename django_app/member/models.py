@@ -34,5 +34,5 @@ class UserLevel(models.Model):
 class PointHistory(models.Model):
     user = models.ForeignKey(User)
     created_date = models.DateTimeField(auto_now_add=True)
-    message = models.TextField()
+    content = models.TextField()
     delta = models.IntegerField()
