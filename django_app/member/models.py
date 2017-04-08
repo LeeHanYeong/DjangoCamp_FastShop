@@ -34,6 +34,16 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+    def save(self, *args, **kwargs):
+        if not self.level_id:
+            user_level, _ = UserLevel.objects.get_or_create(
+                title='Basic',
+                min_point=0,
+                point_rate=0
+            )
+            self.level_id = user_level.id
+        return super().save(*args, **kwargs)
+
 
 class UserLevel(models.Model):
     title = models.CharField(max_length=64)
