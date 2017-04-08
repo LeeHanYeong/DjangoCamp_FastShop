@@ -1,0 +1,14 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+<div class="product-detail-container">
+	<div class="category">
+		{% for category in product.categories.all %}
+		<div>
+			<span>{{ category.title }}</span>
+		</div>
+		{% endfor %}
+	</div>
+	{{ product }}
+</div>
+{% endblock %}

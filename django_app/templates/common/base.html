@@ -7,9 +7,9 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>PokemonStore</title>
-	<link rel="stylesheet" href="{% static 'css/base.css' %}">
-	<link rel="stylesheet" href="{% static 'css/common.css' %}">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+	<link rel="stylesheet" href="{% static 'css/base.css' %}?{% now 'c' %}">
+	<link rel="stylesheet" href="{% static 'css/common.css' %}?{% now 'c' %}">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}?{% now 'c' %}">
 	{% block head %}{% endblock %}
 </head>
 <body>

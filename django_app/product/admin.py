@@ -4,6 +4,16 @@ from django.urls import reverse
 from product.models import Category, Product, DateRangeDiscount
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'full_title',
+        'priority',
+    )
+    list_filter = (
+        'parent',
+    )
+
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'title',
@@ -20,9 +30,10 @@ class ProductAdmin(admin.ModelAdmin):
                 category.full_title
             )
         return ret
+
     admin_categories.allow_tags = True
 
 
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(DateRangeDiscount)
