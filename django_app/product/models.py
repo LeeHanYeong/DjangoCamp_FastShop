@@ -7,19 +7,19 @@ class Category(models.Model):
     priority = models.IntegerField(default=0)
 
     def __str__(self):
-        return '{:03} | {}{}'.format(
+        return '{:03} | {}'.format(
             self.priority,
-            self.parent_title,
-            self.title
+            self.full_title
         )
 
     @property
-    def parent_title(self):
+    def full_title(self):
         title = ''
         cur_category = self
         while cur_category.parent:
             title = cur_category.parent.title + ' > ' + title
             cur_category = cur_category.parent
+        title += self.title
         return title
 
     class Meta:
