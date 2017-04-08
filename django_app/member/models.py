@@ -1,6 +1,17 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager as AuthUserManager
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+
+
+class UserManager(AuthUserManager):
+    def _create_user(self, username, email, password, **extra_fields):
+        user_level, _ = UserLevel.objects.get_or_create(
+            title='Basic',
+            min_point=0,
+            point_rate=0
+        )
+        extra_fields.setdefault('level', user_level)
+        return super()._create_user(username, email, password, **extra_fields)
 
 
 class User(AbstractUser):
@@ -17,6 +28,8 @@ class User(AbstractUser):
     point = models.IntegerField(default=0)
     level = models.ForeignKey('UserLevel')
     wishlist = models.ManyToManyField('product.Product')
+
+    objects = UserManager()
 
     def __str__(self):
         return self.username
