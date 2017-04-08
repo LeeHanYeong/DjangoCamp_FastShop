@@ -43,7 +43,11 @@
       </nav>
     </div>
     <div id="header-nav-wrap-bottom" class="header-nav-wrap">
-
+      <nav id="header-nav-bottom" class="header-nav">
+        {% if user.is_authenticated %}
+          <p><strong>{{ user }}</strong>님, 환영합니다!</p>
+        {% endif %}
+      </nav>
     </div>
     <div id="content-container">
     	{% block content %}

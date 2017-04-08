@@ -15,7 +15,6 @@ $nav-logo-height: 60px;
   &#header-nav-wrap-bottom {
     background-color: $color-bg-nav-bottom;
     height: $nav-bottom-height;
-    display: none;
   }
 }
 .header-nav-wrap > .header-nav {
@@ -64,7 +63,7 @@ $nav-logo-height: 60px;
 }
 
 .header-nav-wrap > .header-nav#header-nav-bottom {
-
+  line-height: $nav-bottom-height;
 }
 
 #content-container {

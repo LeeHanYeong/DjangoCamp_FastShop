@@ -32,7 +32,13 @@ class User(AbstractUser):
     objects = UserManager()
 
     def __str__(self):
-        return self.username
+        if self.first_name and self.last_name:
+            return '{}{}'.format(
+                self.last_name,
+                self.first_name
+            )
+        else:
+            return self.username
 
     def save(self, *args, **kwargs):
         if not self.level_id:
